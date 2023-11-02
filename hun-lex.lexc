@@ -1,0 +1,355 @@
+! Hungarian Noun Lexicon
+
+Multichar_Symbols +Pl +Sg +PossPl +Poss1PSg +Poss2PSg +Poss3PSg +Poss1PPl 
++Poss2PPl +Poss3PPl +NomPoss +NomPossPl +Nom +Acc +Illa +Iness +Ela 
++Subla +SuperEss +Dela +Alla +Adess +Abla +Dat +Instr +Trans +CausFin 
++EssForm +Term +Distr +Soc 
+
+LEXICON ROOT
+	Nouns ;
+
+LEXICON Nouns
+RegStems ; 		!Regular stems
+IrregStems ; 	!Irregular stems
+FleetVowelStems ;
+VStems ; 		!V-adding stems
+
+LEXICON RegStems
+ismerős RegSuff ; 
+barát RegSuff ;
+szék RegSuff ;
+bűn RegSuff ;
+lámpa RegSuff ;
+csésze RegSuff ;
+nő RegSuff ;
+hajó RegSuff ;
+kapu RegSuff ;
+tű RegSuff ;
+lány RegSuff ;
+
+LEXICON FleetVowelStems
+bokor NumberSpec ;
+bokr FleetSuff ;
+iker NumberSpec ;
+ikr FleetSuff ;
+köröm NumberSpec ;
+körm FleetSuff ;
+
+LEXICON VStems 
+cső NumberSpec ;    
+csőv VStemSuff ;
+ló NumberSpec;   
+lov VStemSuff ;
+hó NumberSpec ;  
+hav VStemSuff ;
+mű NumberSpec ; 
+műv VStemSuff ;
+
+LEXICON IrregStems
+uralom IrregSuff ;
+rejtelem IrregSuff ;
+kéz IrregSuff ; 
+levél IrregSuff ;
+pohár IrregSuff ;
+út IrregSuff ;
+víz IrregSuff ;
+ház IrregSuff ;
+könyv IrregSuff ;
+őz IrregSuff ;
+ügy IrregSuff ;
+
+LEXICON RegSuff
+RegNumber ;
+RegPossNumber ; !ai
+RegPossessive ;
+RegNonAtrPoss ;
+
+LEXICON IrregSuff
+IrregNumber ;
+IrregPossNumber ; !ai/ei
+IrregNonAtrPoss ; !e
+IrregPossessive ;
+
+LEXICON FleetSuff
+FleetNumber ;
+FleetNonAtrPoss ; ! ei
+FleetPossessive ;
+FleetPossNumber ;
+
+LEXICON VStemSuff
+VStemNumber ;
+IrregPossNumber ;
+IrregPossessive ;
+IrregNonAtrPoss ;
+
+LEXICON RegNumber
++Sg:0 RegCaseSG ;
++Pl:Ok RegNonAtrPoss ;
++Pl:Ok RegCasePL ;
+RegPossNumber ;
+
+LEXICON IrregNumber
++Sg:0 IrregCaseSG ;
++Pl:Ak IrregNonAtrPoss ;
++Pl:Ak IrregCasePL;
+IrregPossNumber ;
+
+LEXICON FleetNumber
++Sg:0 FleetCaseSpecSG ;
++Pl:Ok RegNonAtrPoss ;
++Pl:Ok RegCasePL ;
+RegPossNumber ;
+
+LEXICON VStemNumber
++Sg:0 CaseSpec1SG ;
++Pl:Ak IrregNonAtrPoss ;
++Pl:Ak IrregCasePL;
+IrregPossNumber ;
+
+LEXICON NumberSpec
++Sg:0 CaseSpec ;
+
+LEXICON RegPossNumber
++PossPl:Yi RegPossPl ; 
+
+LEXICON IrregPossNumber
++PossPl:Yi IrregPossPl ;
+
+LEXICON FleetPossNumber
++PossPl:Yi FleetPossPl ;
+
+LEXICON RegPossessive
++Poss1PSg:Om RegSuff2 ; !1PSg
++Poss2PSg:Od RegSuff2 ; !2PSg
++Poss3PSg:jO RegSuff2 ;  !3PSg
++Poss1PPl:Unk RegSuff2 ; !1PPl
++Poss2PPl:OtOk RegSuff2 ; !2PPl
++Poss3PPl:jUk RegSuff2 ; !3PPl
+
+LEXICON RegSuff2
+RegNonAtrPoss ;
+RegCasePL ;
+
+LEXICON FleetPossessive
++Poss1PSg:Om FleetSuff2 ; !1PSg
++Poss2PSg:Od FleetSuff2 ; !2PSg
++Poss3PSg:O FleetSuff2 ;  !3PSg
++Poss1PPl:Unk FleetSuff2 ; !1PPl
++Poss2PPl:OtOk FleetSuff2 ; !2PPl
++Poss3PPl:Uk FleetSuff2 ; !3PPl
+
+LEXICON FleetSuff2
+FleetNonAtrPoss ;
+FleetCaseSpecPL ;
+CaseSpec ;
+
+LEXICON IrregPossessive
++Poss1PSg:Am IrregSuff2 ; !1PSg
++Poss2PSg:Ad IrregSuff2 ; !2PSg
++Poss3PSg:A IrregSuff2 ;  !3PSg
++Poss1PPl:Unk IrregSuff2 ; !1PPl
++Poss2PPl:AtOk IrregSuff2; !2PPl
++Poss3PPl:Uk IrregSuff2 ; !3PPl
+
+LEXICON IrregSuff2
+IrregCasePL ;
+IrregNonAtrPoss ;
+
+LEXICON RegPossPl
++Poss1PSg:m RegSuff3 ; !1PSg
++Poss2PSg:d RegSuff3 ; !2PSg
++Poss3PSg:0 RegSuff3 ; !3PSg
++Poss1PPl:nk RegSuff3 ; !1PPl
++Poss2PPl:tEk RegSuff3 ; !2PPl
++Poss3PPl:k RegSuff3 ; !3PPl
+
+LEXICON RegSuff3
+RegNonAtrPoss ;
+RegCasePL ;
+
+LEXICON IrregPossPl
++Poss1PSg:m IrregSuff3 ; !1PSg
++Poss2PSg:d IrregSuff3 ; !2PSg
++Poss3PSg:0 IrregSuff3 ; !3PSg
++Poss1PPl:nk IrregSuff3 ; !1PPl
++Poss2PPl:tEk IrregSuff3 ; !2PPl
++Poss3PPl:k IrregSuff3 ; !3PPl
+
+LEXICON IrregSuff3
+IrregCasePL ;
+IrregNonAtrPoss ;
+
+LEXICON FleetPossPl
++Poss1PSg:m FleetSuff3 ; !1PSg
++Poss2PSg:d FleetSuff3 ; !2PSg
++Poss3PSg:0 FleetSuff3 ; !3PSg
++Poss1PPl:nk FleetSuff3 ; !1PPl
++Poss2PPl:tEk FleetSuff3 ; !2PPl
++Poss3PPl:k FleetSuff3 ; !3PPl
+
+LEXICON FleetSuff3
+FleetNonAtrPoss ;
+FleetCaseSpecPL ;
+CaseSpec ;
+
+LEXICON RegNonAtrPoss
++NomPoss:é RegNonAtrCase ;
++NomPoss:é RegNomAtrPossNumber ;
+
+LEXICON RegNomAtrPossNumber
++NomPossPl:i RegNonAtrCase ;
+
+LEXICON IrregNonAtrPoss
++NomPoss:é IrregNonAtrCase ;
++NomPoss:é IrregNomAtrPossNumber ;
+
+LEXICON IrregNomAtrPossNumber
++NomPossPl:i IrregNonAtrCase ;
+
+LEXICON FleetNonAtrPoss
++NomPoss:é FleetNonAtrCase ;
++NomPoss:é FleetNomAtrPossNumber ;
+
+LEXICON FleetNomAtrPossNumber
++NomPossPl:i FleetNonAtrCase ;
+
+LEXICON RegCaseSG
++Nom:0 # ;
++Acc:Öt # ; 
++Illa:bÄ # ;  !Ä -> a/e
++Iness:bÄn # ; 
++Ela:bÓl # ;  !Ó -> ó/ő
++Subla:rÄ # ; 
++SuperEss:Ön # ; 
++Dela:rÓl # ;  !Ó -> ó/ő
++Alla:hÖz # ; 
++Adess:nÄl # ; 
++Abla:tÓl # ; !Ó -> ó/ő
++Dat:nÄk # ; 
++Instr:vÄl # ; 
++Trans:vÄ # ; 
++CausFin:ért # ;
++EssForm:ként # ; 
++Term:ig # ;
++Distr:Önként # ;
++Soc:ÖstUl # ;
+
+LEXICON RegNonAtrCase
++Nom:0 # ;
++Acc:Öt # ; 
+
+LEXICON RegCasePL
++Nom:0 # ;
++Acc:Öt # ; 
++Illa:bÄ # ;  !Ä -> a/e
++Iness:bÄn # ; 
++Ela:bÓl # ;  !Ó -> ó/ő
++Subla:rÄ # ; 
++SuperEss:Ön # ; 
++Dela:rÓl # ;  !Ó -> ó/ő
++Alla:hÖz # ; 
++Adess:nÄl # ; 
++Abla:tÓl # ; !Ó -> ó/ő
++Dat:nÄk # ; 
++Instr:vÄl # ; 
++Trans:vÄ # ; 
++CausFin:ért # ;
++EssForm:ként # ; 
++Term:ig # ;
+
+LEXICON IrregCaseSG
++Nom:0 # ;
++Acc:Ât # ; 
++Illa:bÄ # ; !Ä -> a/e
++Iness:bÄn # ;
++Ela:bÓl # ;  !Ó -> ó/ő
++Subla:rÄ # ; 
++SuperEss:Ön # ; !Supe
++Dela:rÓl # ; !Ó -> ó/ő
++Alla:hÖz # ;
++Adess:nÄl # ;
++Abla:tÓl # ;
++Dat:nÄk # ; 
++Instr:vÄl # ; 
++Trans:vÄ # ; 
++CausFin:ért # ;
++EssForm:ként # ;
++Term:ig # ; !Term
++Distr:Ânként # ;
++Soc:ÂstUl # ;
+
+LEXICON IrregNonAtrCase
++Nom:0 # ;
++Acc:Ât # ;
+
+LEXICON IrregCasePL
++Nom:0 # ;
++Acc:Ât # ; 
++Illa:bÄ # ; !Ä -> a/e
++Iness:bÄn # ;
++Ela:bÓl # ;  !Ó -> ó/ő
++Subla:rÄ # ; 
++SuperEss:Ön # ; !Superessive
++Dela:rÓl # ; !Ó -> ó/ő
++Alla:hÖz # ;
++Adess:nÄl # ;
++Abla:tÓl # ;
++Dat:nÄk # ; 
++Instr:vÄl # ; 
++Trans:vÄ # ; 
++CausFin:ért # ;
++EssForm:ként # ;
++Term:ig # ;
+
+LEXICON CaseSpec1SG
++Acc:Ât # ; 
++SuperEss:Ön # ;
++Distr:Ânként # ; 
++Soc:ÂstUl # ; 
+
+LEXICON CaseSpec
++Nom:0 # ;
++Illa:bÄ # ;  !Ä -> a/e
++Iness:bÄn # ;
++Ela:bÓl # ; ! Ó -> ó/ő
++Subla:rÄ # ; 
++Dela:rÓl # ;  !Ó -> ó/ő
++Alla:hÖz # ; 
++Adess:nÄl # ; 
++Abla:tÓl # ;  !Ó -> ó/ő
++Dat:nÄk # ; 
++Instr:vÄl # ;
++Trans:vÄ # ; 
++CausFin:ért # ; 
++EssForm:ként # ; 
++Term:ig # ; 
+
+LEXICON FleetCaseSpecSG
++Acc:Öt # ; 
++SuperEss:Ön # ;
++Distr:Önként # ; 
++Soc:ÂstUl # ; 
+
+LEXICON FleetCaseSpecPL
++Nom:0 # ;
++Acc:Öt # ; 
++SuperEss:Ön # ;
+
+LEXICON FleetNonAtrCase
++Nom:0 # ;
++Acc:Öt # ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

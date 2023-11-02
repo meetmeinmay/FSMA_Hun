@@ -1,0 +1,105 @@
+clear stack
+
+echo >> FILTER FOR HUNGARIAN NOUNS
+
+echo >> DEFINING ALPHABET / VOWELS
+define BackV [a | á | o | ó | u | ú];
+define FrontUnroundV [e | é | i | í];
+define FrontRoundV [ö | ő | ü | ű];
+define FrontVowel [FrontRoundV | FrontUnroundV];
+define Vowel [BackV | FrontUnroundV | FrontRoundV];
+
+echo >> DEFINING ALPHABET / CONSONANTS
+define SingleCons [j | m | n | l | r | b | d | g | v | z | p | t | k | f | s | c];
+define ComplCons [{ly} | {ny} | {zs} | {dz} | {dzs} | {gy} | {sz} |{cs} | {ty} ];
+define Cons [SingleCons | ComplCons];
+
+echo >> DEFINING SPECIFIC WORDEND
+define WE1 [j | {gy} | {ly} | {ny} | {ty} | s | {sz} | {zs} | {cs} | z | f | {ch} | h];
+define WE2 [j |{ly} | n | {ny} | s | {sz} | {zs} ] ;
+define WE3 [jj | mm | nn | ss | ll | bb | dd | gg | rr | pp | tt | kk | ff | cc | vv | zz | {lly} | {nny} | {ggy} | {tty} ];
+define WE4 [{gy} | {ly} | {ny} | {ty} | {ny}];
+
+echo >> DEFINING RULES
+define RegNumber [O -> 0 || Vowel _ k ?* ,, O -> o || BackV Cons+ _ k ?* ,, 
+               O -> e || FrontUnroundV Cons+ _ k ?* ,, O -> ö || FrontRoundV (i) Cons+ _ k ?* ];
+define IrregNumber [A -> a || BackV Cons+ _ k ,, A -> e || FrontVowel Cons+ _ k];
+define RegPoss13PPl [[U|O] -> 0 || Vowel _ Cons+ ?* ,, U -> u || BackV Cons+ _ (n) k ?* ,, 
+                  U -> ü || FrontVowel Cons+ _ (n) k ?*];
+define RegPoss2PPl [O -> 0 || Vowel _ [t O k] ,, O -> o || BackV Cons+ _ [t O k] ,, O -> ö || FrontRoundV Cons+ _ [t O k] ?* ,, O -> ö || ö Cons+ _ [t O k] ?* ,, O -> e || FrontUnroundV Cons+ _ [t O k] ?* ];
+define IrregPoss2PPl [A -> a || BackV Cons+ _ [t O k] ?* ,, A -> e || FrontUnroundV Cons+ _ [t O k] ?*,, A -> ö || FrontRoundV Cons+ _ [t O k] ?*];
+define RegPoss2PPl2 [O -> o || BackV t _ k ?* ,, O -> e || FrontUnroundV t _ k ?* ,, O -> ö || FrontRoundV t _ k ?*];
+define RegPoss3PSg [O -> a || BackV Cons+ (j) _ [Vowel+|Cons+] ?* ,, O -> a || BackV (~[WE1]) (j) _  (.#.) ,, O -> e || FrontUnroundV (~[WE1]) (j) _ (.#.) ];
+define RegPoss3PPl [U -> u || BackV (~[WE1]) (j) _ k ?* ,, U -> ü || FrontVowel (Cons+) (j) _ k ?*];
+define RegPoss2PSg [O -> a || BackV (j) _ ?* ,, O -> o || BackV Cons+ _ [m|d] ?* ,, O -> e || FrontVowel (Cons+) (j) _ ([m|d]) ?*]; 
+define IrregPoss3PSg [A -> a || BackV Cons+ _ ?* ,, A -> e || FrontVowel Cons+ _ ?* ] ;
+define PossNumber [Y -> 0 || Vowel _ i ?* ,, Y -> e || FrontVowel Cons+ _ i ?* ,, Y -> a || BackV Cons+ _ i ?*];
+define PossNumber2 [E -> o || BackV i t _ k ,, E -> e || FrontVowel i t _ k];
+define AccPoss [[Â|Ö] -> 0 || Vowel _ t ,, Â -> a || [a i] Cons+ _ t ,, Â -> e || [e i] Cons+ _ t];
+define AccReg [Ö -> 0 || [Vowel|WE2] _ t.#. ,, Ö -> e || FrontUnroundV Cons+ _ t.#. ,, Ö -> ö || FrontRoundV Cons+ _ t.#. ,,
+               Ö -> o || BackV (Cons+) _ t.#.];
+define AccIrreg [Â -> 0 || Vowel _ t .#. ,, Â -> a || BackV (Cons+) _ t.#. ,, Â -> e || FrontVowel Cons+ _ t.#. ];
+define AccPl [o -> a || [[o k]|[o m]|[o d]|[n k]|[ó k]|[ó m]|[ó d]] _ t.#.] ;
+define LocPoss [ Ö -> o || [a i] Cons+ _ [n|b] ?* ,, Ö -> e ||[e i] Cons+ _ [n|b] ?* ];
+define Loc [Ö -> 0 || Vowel _ n ?* ,, Ö -> ö || FrontRoundV Cons+ _ [n|b] ?* ,, Ö -> o || BackV Cons+ _ [n|b] ?* ,, 
+            Ö -> e || FrontUnroundV Cons+ _ [n|b] ?*];
+define IllInessPoss [Ä -> a || BackV Cons* [a i|i] (Cons+) b _ (n) ,, Ä -> e || [e i] Cons+ b _ (n).#.];
+define IllIness [Ä -> a || BackV (Cons+) b _ (n).#. ,, Ä -> e || FrontVowel (Cons+) b _ (n).#.];
+define ElaDelaAblaPoss [ Ó -> ó || BackV Cons* [a i|i] (Cons+) [b|t|r] _ l.#. ,, Ó -> ő || [e i] Cons+ [b|t|r] _ l.#.];
+define ElaDelaAbla [Ó -> ó || BackV (Cons+) [b|t|r] _ l.#. ,, Ó -> ő || FrontVowel (Cons+) [b|t|r] _ l.#.];
+define AdessPoss [Ä -> á || BackV Cons* [a i|i] (Cons+) n _ l.#. ,, Ä -> é || [e i] Cons+ n _ l.#.];
+define Adess [Ä -> á || BackV (Cons+) n _ l.#. ,, Ä -> é || FrontVowel (Cons+) n _ l.#.];
+define DatPoss [Ä -> a || BackV Cons* [a i|i] (Cons+) n _ k.#. ,, Ä -> e || [e i] Cons+ n _ k.#.];
+define Dat [Ä -> a || BackV (Cons+) n _ k.#. ,, Ä -> e || FrontVowel (Cons+) n _ k.#.];
+define SublaPoss [Ä -> a || BackV Cons* [a i|i] (Cons+) r _.#. ,, Ä -> e || [e i] Cons+ r _ .#.];
+define Subla [Ä -> a || BackV (Cons+) r _.#. ,, Ä -> e || FrontVowel (Cons+) r _ .#.];
+define AllaPoss [Ö -> o || BackV Cons* [a i|i] (Cons+) h _ z.#. ,, Ö -> e || [e i] Cons+ h _ z.#.];
+define Alla [Ö -> o || BackV (Cons+) h _ z.#. ,, Ö -> e ||  FrontUnroundV (Cons+) h _ z.#. ,, Ö -> ö || FrontRoundV (Cons+) h _ z.#.];
+define InstrTransPoss [Ä -> a || BackV Cons* [a i|i] (Cons+) v _ (l) .#. ,, Ä -> e || [e i] (Cons+) v _ (l) .#.];
+define InstrTrans [Ä -> a || BackV (Cons+) v _ (l) .#. ,, Ä -> e || FrontVowel (Cons+) v _ (l) .#.];
+define TransV [a -> á || [BackV|[a i]] (Cons+) v _ .#. ,, e -> é || [FrontVowel|[e i]] (Cons+) v _ .#.];
+define InstrCons [t -> tt, v -> vv, m -> mm, n -> nn, l -> ll, z -> zz, b -> bb, d -> dd, g -> gg, p -> pp, k -> kk , j -> jj,
+                 f -> ff, s -> ss, c -> cc, r -> rr || _ [v [a|e|á|é] ] (l) .#.];
+define InstrCons2 [[l y] -> [l l y], [g y] -> [g g y], [n y] -> [n n y], [z s] -> [z z s], [c s] -> [c c s], 
+                   [t y] -> [t t y], [c h] -> [c c h], [d z] -> [d d z] || _ v [a|e|é|á] (l) .#.];
+define VDelete [v -> 0 || WE3 _ [a|e|á|é] (l).#.];
+define DistrPoss [[Â|Ö] -> 0 || [[a i]|[e i]|i] _ [n k é n t].#.];
+define DistrPoss1 [[Â|Ö] -> a || [a i|i] Cons+ _ [n k é n t].#. ,, [Â|Ö] -> e || [e i] Cons+ _ [n k é n t].#.];
+define DistrReg [Ö -> a || BackV (Cons+) _ [n k é n t].#. ,, Ö -> e || FrontUnroundV (Cons+) _ [n k é n t].#. ,, 
+                 Ö -> ö || FrontRoundV (Cons+) _ [n k é n t].#.];
+define DistrIrreg [Â -> a || BackV (Cons+) _ [n k é n t].#. ,, Â -> e || FrontVowel (Cons+) _ [n k é n t].#.];
+define SocVDelete [ [Ö|Â] -> 0 || Vowel _ [s t U l]];
+define SocReg [Ö -> a || BackV (Cons+) _ [s t U l].#. ,, Ö -> e || FrontUnroundV (Cons+) _ [s t U l].#. ,, 
+               Ö -> ö || FrontRoundV (Cons+) _ [s t U l].#.];
+define SocIrreg [Â -> a || BackV (Cons+) _ [s t U l].#. ,, Â -> e || FrontVowel (Cons+) _ [s t U l].#.];
+define SocU [U -> u || BackV s t _ l.#. ,, U -> ü || FrontVowel s t _ l.#.];
+define CleanAccSpecCons [o -> 0, e -> 0 || [WE4|WE2] _ t.#.] ;
+define CleanAElomStems [e -> 0, o -> 0 || l _ [m [a|e|u|o|ü|é]] ?* ];
+define CleanRegPoss2PSg [j -> 0 || WE1 _ [a|u]];
+
+read regex RegNumber .o. IrregNumber .o. RegPoss13PPl .o. RegPoss2PPl .o. IrregPoss2PPl .o. RegPoss2PPl2 
+ .o. RegPoss3PSg .o. RegPoss3PPl .o. RegPoss2PSg .o. IrregPoss3PSg .o. PossNumber .o. PossNumber2 .o. AccPoss .o. AccReg .o. AccIrreg 
+ .o. AccPl .o. LocPoss .o. Loc .o. IllInessPoss .o. IllIness .o. ElaDelaAblaPoss 
+ .o. ElaDelaAbla .o. AdessPoss .o. Adess .o. DatPoss .o. Dat .o. SublaPoss .o. Subla .o. AllaPoss .o. Alla .o. InstrTransPoss .o. InstrTrans .o. TransV .o. InstrCons 
+ .o. InstrCons2 .o. VDelete .o. DistrPoss .o. DistrPoss1 .o. DistrReg .o. DistrIrreg .o. SocVDelete 
+ .o. SocReg .o. SocIrreg .o. SocU .o. CleanAccSpecCons .o. CleanAElomStems .o. CleanRegPoss2PSg;
+
+define Rules;
+
+read lexc < hun13-lex.lexc;
+define HunNouns;
+
+read regex HunNouns .o. Rules;
+
+#apply up < HungarianUp.txt
+apply down < HungarianDown.txt;
+
+#see the corresponding sets ouf outputs in e-mail attachments
+
+
+
+
+
+
+
+
