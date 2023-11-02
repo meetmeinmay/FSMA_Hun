@@ -94,7 +94,7 @@ read regex HunNouns .o. Rules;
 #apply up < HungarianUp.txt
 apply down < HungarianDown.txt;
 
-#see the corresponding sets ouf outputs in e-mail attachments
+#see the corresponding sets of outputs in corresponding files.
 
 
 
